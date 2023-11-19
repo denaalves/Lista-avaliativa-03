@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 int romanoParaDecimal(char *romano) {
     int valores[26];
     valores['I' - 'A'] = 1;
