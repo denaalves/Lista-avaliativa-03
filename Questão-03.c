@@ -6,11 +6,9 @@ int main() {
     char placa[10], dia_semana[20];
     const char *dias_semana[] = {"SEGUNDA-FEIRA", "TERCA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SABADO", "DOMINGO"};
 
-    // Leitura da placa e do dia da semana
     scanf("%s", placa);
     scanf("%s", dia_semana);
 
-    // Verificação do formato do dia da semana
     int dia_valido = 0;
     for (int i = 0; i < 7; i++) {
         if (strcmp(dia_semana, dias_semana[i]) == 0) {
@@ -19,29 +17,33 @@ int main() {
         }
     }
 
-    // Verificação do formato da placa
     int placa_valida = 0;
     int tamanho_placa = strlen(placa);
 
-    if ((tamanho_placa == 7 || tamanho_placa == 8) &&
-        isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) &&
-        placa[3] == '-' &&
-        isdigit(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]) && isdigit(placa[7])) {
+    if ((tamanho_placa == 7 && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) && isdigit(placa[3]) && isalpha(placa[4]) && isdigit(placa[5]))|| (tamanho_placa == 8 && isdigit(placa[6]) && placa[3] == '-') ) {
         placa_valida = 1;
     }
 
-    // Verificação e saída
-    if (!placa_valida) {
+    if (!placa_valida && dia_valido ) {
         printf("Placa invalida\n");
         return 1;
-    } else if (!dias_semana) {
+    } else if (placa_valida && !dia_valido) {
         printf("Dia da semana invalido\n");
-        exit(0);
+        return 1;
+    }else if (!placa_valida && !dia_valido) {
+        printf("Placa invalida\n");
+        printf("Dia da semana invalido\n");
+        return 1;
     }
-
 
     int ultimo_digito = placa[tamanho_placa - 1] - '0';
     int proibido = 0;
+    int tamanho_dia = strlen(dia_semana);
+
+    for(int i = 0; i < tamanho_dia; i++){
+        dia_semana[i] = tolower(dia_semana[i]);
+    }
+
 
     if (strstr("SEGUNDA-TERCA-QUARTA-QUINTA-SEXTA", dia_semana)) {
         if (ultimo_digito >= 0 && ultimo_digito <= 1) proibido = 1;
