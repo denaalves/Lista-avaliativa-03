@@ -26,14 +26,14 @@ int main() {
 
     if (!placa_valida && dia_valido ) {
         printf("Placa invalida\n");
-        return 1;
+        return 0;
     } else if (placa_valida && !dia_valido) {
         printf("Dia da semana invalido\n");
-        return 1;
+        return 0;
     }else if (!placa_valida && !dia_valido) {
         printf("Placa invalida\n");
         printf("Dia da semana invalido\n");
-        return 1;
+        return 0;
     }
 
     int ultimo_digito = placa[tamanho_placa - 1] - '0';
@@ -44,15 +44,15 @@ int main() {
     if (strcmp(dia_semana, "SABADO") == 0 || strcmp(dia_semana, "DOMINGO") == 0) {
         printf("Nao ha proibicao no fim de semana\n");
         return 0;
-    }else if (strstr("SEGUNDA-FEIRA", dia_semana) == 0) {
+    }else if (strcmp("SEGUNDA-FEIRA", dia_semana) == 0) {
         if (ultimo_digito == 0 || ultimo_digito == 1){ proibido = 1;}
-    } else if(strstr("TERCA-FEIRA", dia_semana) == 0) {
+    } else if(strcmp("TERCA-FEIRA", dia_semana) == 0) {
         if (ultimo_digito == 2 || ultimo_digito == 3){ proibido = 1;}
-    }else if(strstr("QUARTA-FEIRA", dia_semana) == 0) {
+    }else if(strcmp("QUARTA-FEIRA", dia_semana) == 0) {
         if (ultimo_digito == 4 || ultimo_digito == 5){ proibido = 1;}
-    }else if(strstr("QUINTA-FEIRA", dia_semana) == 0) {
+    }else if(strcmp("QUINTA-FEIRA", dia_semana) == 0) {
         if (ultimo_digito == 6 || ultimo_digito == 7){ proibido = 1;}
-    }else if(strstr("SEXTA-FEIRA", dia_semana) == 0) {
+    }else if(strcmp("SEXTA-FEIRA", dia_semana) == 0) {
         if (ultimo_digito == 8 || ultimo_digito == 9){ proibido = 1;}
     }
     for(int i = 0; i < tamanho_dia; i++){
@@ -66,3 +66,4 @@ int main() {
 
     return 0;
 }
+//SELO-ADENILSON-DE-PRODUÇÃO
